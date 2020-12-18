@@ -1,0 +1,13 @@
+#skip {
+    background: #4d5791;
+    color: #fff;
+    font-weight: 700;
+    left: 50%;
+    padding: 4px;
+    position: absolute;
+    transform: translateY(-100%);
+  }
+  
+  #skip:focus {
+    transform: translateY(0%);
+  }
