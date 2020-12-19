@@ -33,13 +33,13 @@ export class SignupComponent implements OnInit {
 
 
   duplicateUserName(){
-    alert('User with this name already exists')
-    // this.toastr.warning('User with this name already exixts. Please proceed to login page!!');
+    alert('User name already exists')
+    
   }
 
   incompleteDetails(){
     alert('Please enter all the fields')
-    // this.toastr.error('Please enter all the fields','Warning');
+   
   }
  
 
@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
       if(this.userData[i].username == this.username){
         console.log("There exists a user with same username");
         alert('User with this name already exists.')
-        // this.toastr.warning('User with this name already exixts. Please proceed to login page!!');
+        
         this.password = "";
         this.repassword="";
         this.username="";
@@ -73,18 +73,7 @@ export class SignupComponent implements OnInit {
     record['repassword'] = this.repassword;
     console.log(JSON.stringify(record));
     console.log(this.userData);
-    // for(let i=0;i<this.userData.length;i++){
-    //   if(this.userData[i].username == this.username){
-    //     console.log("There exists a user with same username");
-    //     alert('User with this name already exists.')
-    //     // this.toastr.warning('User with this name already exixts. Please proceed to login page!!');
-    //     this.password = "";
-    //     this.repassword="";
-    //     this.username="";
-    //     this.email="";
-    //     return;
-    //   }
-    // }
+
     if(this.password !=this.repassword){
       alert("Password does not match,Enter Password Again")
       this.password = "";
@@ -93,8 +82,7 @@ export class SignupComponent implements OnInit {
     }
       if(!this.username || !this.password || !this.email || !this.repassword){
         alert('Please enter all the fields')
-        // this.toastr.error('Please enter all the fields','Warning');
-        // this.incompleteDetails();
+       
         return;
       }else{
         console.log("In else")
