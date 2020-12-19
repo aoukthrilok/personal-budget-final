@@ -16,20 +16,20 @@ const jwtMW = exjwt({
 
 router.get('/',jwtMW,(req,res)=>{  
     userid = String(req.query.userid);
-    console.log(userid);
+    //console.log(userid);
     budgetModel.find({username:userid})
     .then((data)=>{
-        console.log(data);
+        //console.log(data);
         res.status(200).send(data);
     })
     .catch((err)=>{
-        console.log(err);
+        //console.log(err);
         res.status(500).send();
     })    
 })
 
 router.post('/',jwtMW,async (req,res)=>{
-    console.log(req.body);    
+    //console.log(req.body);    
     let record = await budgetModel.findOne({username:req.body.username, title: req.body.title });
     if(record){
         return res.status(400).send('That expense already exists!');

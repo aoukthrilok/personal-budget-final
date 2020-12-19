@@ -74,6 +74,15 @@ export class SignupComponent implements OnInit {
     console.log(JSON.stringify(record));
     console.log(this.userData);
 
+    if(this.username.length<5){
+      alert("username should be minimum 5 characters")
+      this.username = "";
+      this.password = "";
+      this.email = "";
+      this.repassword="";
+      return;
+    }
+
     if(this.password !=this.repassword){
       alert("Password does not match,Enter Password Again")
       this.password = "";
@@ -94,6 +103,11 @@ export class SignupComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         err =>{
+          alert(err.error.text);
+          this.username = "";
+      this.password = "";
+      this.email = "";
+      this.repassword="";
           console.log("Validation failed");
           
         })

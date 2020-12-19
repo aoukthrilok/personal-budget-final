@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const path = require('path');
+// const port = 3000;
 const bodyParser = require('body-parser');
 const mongoose  = require('mongoose');
 const budgetModel = require('./models/budgetModel');
@@ -22,7 +23,9 @@ app.use(express.json());
 app.use('/users', users);    
 app.use('/auth', auth); 
 app.use('/budget',budget);
- 
+
+app.use(express.static(__dirname + '/build/personal-budget'));
+
 //module.exports = router;
 app.use(express.json());
 
@@ -37,9 +40,12 @@ app.use((req,res,next)=>{
     next();
 })
 
+app.use('/*', (req, res) => res.sendFile(path.join(__dirname)));
 
-app.listen(port, () => {
-    console.log(`API served at http://localhost:${port}`);
+app.set('port', process.env.PORT || 3000);
+
+app.listen(app.get('port'), () => {
+    //console.log(`API served at http://localhost:${port}`);
 });
 
 

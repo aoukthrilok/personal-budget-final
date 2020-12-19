@@ -6,10 +6,13 @@ const router = express.Router();
 router.post('/', async (req, res) => {       
  
     let user = await userModel.findOne({ username: req.body.username });
+    let email = await userModel.findOne({ email: req.body.email });
     if (user) {
         // alert('user already exists!')
-        return res.status(400).send('That user already exists!');
-    } else {
+        return res.status(206).send('Username already taken!');
+    } else if(email){
+        return res.status(206).send('Email exists !!');
+    }else {
         user = new userModel({
             username: req.body.username,
             email: req.body.email,
@@ -27,11 +30,11 @@ router.post('/', async (req, res) => {
 router.get('/',async (req,res)=>{
     userModel.find({})
     .then((data)=>{
-        console.log(data);
+        //console.log(data);
         res.status(200).send(data);
     })
     .catch((err)=>{
-        console.log(err);
+        //console.log(err);
         res.status(500).send();
     })   
 })

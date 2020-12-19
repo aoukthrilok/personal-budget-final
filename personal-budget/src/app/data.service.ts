@@ -91,9 +91,10 @@ private readonly NAMES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
     return this.http.post('http://localhost:3000/users',body,{'headers':headers});
   }
 
-  invaliduser(){
+  invaliduser(message:string){
   //  this.toastr.error("User does not exist. Please proceed to signup page",'Error');
-   alert("Username or password is incorrect. Please proceed to signup page")
+  //  alert("Username or password is incorrect. Please proceed to signup page")
+   alert(message)
   }
 
   loginSuccessful(){
@@ -119,10 +120,10 @@ private readonly NAMES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
           this.setTimer(true);
           // this.inactivityTime();
         },err=>{
-            this.invaliduser();
-            console.log('errorrrr')
+            this.invaliduser(err.error.text);
+            console.log(err)
         })
-    }    
+    }
 
 
   //   public inactivityTime () {

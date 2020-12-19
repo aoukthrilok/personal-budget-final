@@ -18,17 +18,17 @@ const jwtMW = exjwt({
 router.post('/', async (req, res) => {    
  
     let user = await User.findOne({ username: req.body.username });
-    console.log(user)
+    // //console.log(user)
     if (!user) {
-         console.log('invalid username')
-        return res.status(206).send('Incorrect username or password.');
+         //console.log('invalid username')
+         return res.status(206).send('Username doesn\'t exist');
     }
-    console.log(user.password)
+    // //console.log(user.password)
     
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (!validPassword) {
-        console.log('invalid password')
-        return res.status(206).send('Incorrect email or password.');
+        // //console.log('invalid password')
+        return res.status(206).send('Incorrect password.');
     }
     const token = jwt.sign({ _id: user._id,username: user.username }, accessTokenKey,{expiresIn:'60s'});    
     loginStatus = true;
